@@ -56,6 +56,8 @@ public class JerseyRESTClient {
 	
 	private void printMenu() throws IOException, JSONException {
 		getItemsFromAPI();
+		System.out.println();
+		System.out.println();
 		System.out.println("Velkommen til Super Simple DDHF Java REST klient!");
 		System.out.println("Vælg en kommando:");
 		System.out.println("1. List alle genstande");
@@ -122,7 +124,8 @@ public class JerseyRESTClient {
 		private String donator;
 		private String producer;
 		private String zipcode;
-//		private JSONObject dating_to;
+		private Dating dating_to, dating_from, received_at, created_at, updated_at, deleted_at;
+		private Images images[];
 		
 		public String getDescription() { return description; }
 		
@@ -136,9 +139,29 @@ public class JerseyRESTClient {
 					"Beskrivelse: " + description + "\n" +
 					"Postnr.: " + zipcode + "\n" +
 					"Producent: " + producer + "\n" +
-					"Donator: " + donator + "\n" 
-//					"Dateret fra: " + dating_to + "\n"
+					"Donator: " + donator + "\n" +
+					"Dateret fra: " + dating_from.getPretty() + "\n" +
+					"Dateret til: " + dating_to.getPretty() + "\n" + 
+					"Modtaget: " + received_at.getPretty() + "\n" + 
+					"Oprettet: " + created_at.getPretty() + "\n" +
+					"Fullstørrelse billede URL: " + images[0].getFull()
 					;
+		}
+		
+		public class Dating {
+			private String pretty;
+			private String unix;
+			
+			public String getPretty() { return pretty; }
+			public String getUnix() { return unix; }
+		}
+		
+		public class Images {
+			private String thumb, medium, full;
+			
+			public String getThumb() { return thumb; }
+			public String getFull() { return full; }
+			public String getMedium() { return medium; }
 		}
 		
 	}
