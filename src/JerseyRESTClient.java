@@ -47,13 +47,13 @@ public class JerseyRESTClient {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
-	
+	}	
 	
 	private void printMenu() {
 		System.out.println("Velkommen til Super Simple DDHF Java REST klient!");
 		System.out.println("Vælg en kommando:");
 		System.out.println("1. List alle genstande");
+		System.out.println("2. Slå genstand op via. ID");
 		
 		Scanner scan = new Scanner(System.in);
 		String userInput = scan.nextLine();
@@ -61,13 +61,26 @@ public class JerseyRESTClient {
 		case "1":
 			listAllItems();
 			break;
+		case "2":
+			System.out.println("Indtast genstand id:");
+			userInput = scan.nextLine();
+			System.out.println(lookupItem(userInput));
+			userInput = scan.nextLine();
+			break;
 		}
-		
+		printMenu();
+	}
+	
+	private String lookupItem(String userInput) {
+		for (int i = 0; i < itemList.size(); i++) {
+			if(itemList.get(i).getId() == Integer.valueOf(userInput)) {
+				return itemList.get(i).toString() + " (Tryk Enter for at forstætte)";
+			}
+		}
+		return "Genstand med ID " + userInput + " kunne ikke findes. (Enter for at fortsætte)";
 	}
 
-
 	private void listAllItems() {
-		System.out.println(itemList.size());
 		for (int i = 0; i < itemList.size(); i++) {
 			System.out.println("---------------------------------");
 			System.out.println(itemList.get(i).toString());
@@ -79,6 +92,10 @@ public class JerseyRESTClient {
 		private int id;
 		private String headline;
 		private String description;
+		private String donator;
+		private String producer;
+		private String zipcode;
+		private JSONObject dating_to;
 		
 		public String getDescription() { return description; }
 		
@@ -88,7 +105,13 @@ public class JerseyRESTClient {
 		
 		public String toString() {
 			return "Titel: " + headline + "\n" + 
-					"ID: " + id;
+					"ID: " + id + "\n" +
+					"Beskrivelse: " + description + "\n" +
+					"Postnr.: " + zipcode + "\n" +
+					"Producent: " + producer + "\n" +
+					"Donator: " + donator + "\n" +
+					"Dateret fra: " + dating_to + "\n"
+					;
 		}
 		
 	}
