@@ -134,6 +134,7 @@ public class JerseyRESTClient {
 		public int getId() { return id; }
 		
 		public String toString() {
+			try {
 			return "Titel: " + headline + "\n" + 
 					"ID: " + id + "\n" +
 					"Beskrivelse: " + description + "\n" +
@@ -144,8 +145,22 @@ public class JerseyRESTClient {
 					"Dateret til: " + dating_to.getPretty() + "\n" + 
 					"Modtaget: " + received_at.getPretty() + "\n" + 
 					"Oprettet: " + created_at.getPretty() + "\n" +
+					"Opdateret: " + updated_at.getPretty() + "\n" +
 					"Fullstørrelse billede URL: " + images[0].getFull()
 					;
+			} catch (NullPointerException e) {
+				return "Titel: " + headline + "\n" + 
+						"ID: " + id + "\n" +
+						"Beskrivelse: " + description + "\n" +
+						"Postnr.: " + zipcode + "\n" +
+						"Producent: " + producer + "\n" +
+						"Donator: " + donator + "\n" +
+						"Dateret fra: " + dating_from.getPretty() + "\n" +
+						"Dateret til: " + dating_to.getPretty() + "\n" + 
+						"Modtaget: " + received_at.getPretty() + "\n" + 
+						"Oprettet: " + created_at.getPretty() + "\n" +
+						"Opdateret: " + updated_at.getPretty() + "\n";
+			}
 		}
 		
 		public class Dating {
