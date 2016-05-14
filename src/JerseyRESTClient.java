@@ -148,7 +148,7 @@ public class JerseyRESTClient {
 					"Opdateret: " + updated_at.getPretty() + "\n" +
 					"Fullstørrelse billede URL: " + images[0].getFull()
 					;
-			} catch (NullPointerException e) {
+			} catch (ArrayIndexOutOfBoundsException e) {
 				return "Titel: " + headline + "\n" + 
 						"ID: " + id + "\n" +
 						"Beskrivelse: " + description + "\n" +
