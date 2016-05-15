@@ -62,7 +62,7 @@ public class JerseyRESTClient {
 		System.out.println("Vælg en kommando:");
 		System.out.println("1. List alle genstande");
 		System.out.println("2. Slå genstand op");
-		System.out.println("3. Slet genstand");
+//		System.out.println("3. Slet genstand");
 		
 		Scanner scan = new Scanner(System.in);
 		String userInput = scan.nextLine();
@@ -76,22 +76,23 @@ public class JerseyRESTClient {
 			System.out.println(lookupItem(userInput));
 			userInput = scan.nextLine();
 			break;
-		case "3":
-			System.out.println("Indtast genstand id:");
-			userInput = scan.nextLine();
-			System.out.println("Indtast genstand id igen for at bekræfte sletning:");
-			String userInput2 = scan.nextLine();
-			if(userInput.equals(userInput2)) {
-				deleteItem(userInput);
-			} else {
-				System.out.println("Item id matchede ikke");
-			}
+//		case "3":
+//			System.out.println("Indtast genstand id:");
+//			userInput = scan.nextLine();
+//			System.out.println("Indtast genstand id igen for at bekræfte sletning:");
+//			String userInput2 = scan.nextLine();
+//			if(userInput.equals(userInput2)) {
+//				deleteItem(userInput);
+//			} else {
+//				System.out.println("Item id matchede ikke");
+//			}
 		}
 		printMenu();
 	}
 	
+	@Deprecated
 	private void deleteItem(String userInput) throws IOException {
-		URL url = new URL(baseURL + Integer.valueOf(userInput) + "?token=test");
+		URL url = new URL(baseURL + Integer.valueOf(userInput) + "?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9mYmJhbGxpbi5jb21cLyIsImlhdCI6MTQ2MzIzMTg3NCwiZXhwIjoxNDYzMjM1NDc0LCJuYW1lIjoiczE0NDg3MiIsImFkbWluIjp0cnVlfQ.RPkcdwYZ7qh8W5pQipq4XJ-ufmwHvk6FmOHjbVfYDyw");
 		HttpURLConnection httpCon = (HttpURLConnection) url.openConnection();
 		httpCon.setDoOutput(true);
 		httpCon.setRequestProperty(
